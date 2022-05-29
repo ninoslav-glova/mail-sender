@@ -3,15 +3,14 @@ package ng.personal.tasks.mailbackend.controller;
 import ng.personal.tasks.mailbackend.model.Mail;
 import ng.personal.tasks.mailbackend.repository.MailRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("api/mail")
+@RequestMapping("api")
+@CrossOrigin
 public class MailController {
 
     final
@@ -21,9 +20,16 @@ public class MailController {
         this.repository = repository;
     }
 
-    @PostMapping(value = "/send")
+    @PostMapping(value = "mail/send", produces = "application/json;charset=UTF-8")
     public ResponseEntity<String> sendMail(@Valid @RequestBody Mail mail) {
         repository.save(mail);
-        return ResponseEntity.ok("Mail sent!");
+        String response = "{\"response\":\"Mail Sent!\"}";
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/mail")
+    public ResponseEntity<List<Mail>> sendMail() {
+
+        return ResponseEntity.ok(repository.findAll());
     }
 }
