@@ -8,18 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
 import java.util.Objects;
-
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Entity
 @Getter
@@ -45,7 +37,7 @@ public class Mail {
     @NotBlank(message = "Subject is mandatory.")
     private String subject;
 
-    @ImportanceValue(enumClass = IMPORTANCE.class)
+    @EnumValidator.ImportanceValue(enumClass = IMPORTANCE.class)
     private String importance;
     private String content;
 
@@ -65,18 +57,6 @@ public class Mail {
 
     public enum IMPORTANCE {Low, Normal, High}
 
-    @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
-    @Retention(RUNTIME)
-    @Documented
-    @Constraint(validatedBy = EnumValidator.class)
-    public @interface ImportanceValue {
-        Class<? extends Enum<?>> enumClass();
 
-        String message() default "Field must be any of: Low | Normal | High";
-
-        Class<?>[] groups() default {};
-
-        Class<? extends Payload>[] payload() default {};
-    }
 
 }
