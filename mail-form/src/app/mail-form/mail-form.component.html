@@ -1,0 +1,31 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="mailForm">
+    <div class="form-group">
+      <label for="fromEmail">From:</label>
+      <input class="form-control" formControlName="fromEmail" id="fromEmail" name="fromEmail"
+             style="margin-bottom: 25px" type="email">
+      <label for="toEmail">To:</label>
+      <input class="form-control" formControlName="toEmail" id="toEmail" name="toEmail" style="margin-bottom: 25px;"
+             type="email">
+      <label for="ccEmail">CC:</label>
+      <input class="form-control" formControlName="ccEmail" id="ccEmail" name="ccEmail" style="margin-bottom: 25px;"
+             type="text">
+      <label for="subject">Subject:</label>
+      <input class="form-control" formControlName="subject" id="subject" name="subject" style="margin-bottom: 25px;"
+             type="text">
+      <label for="importance">Importance:</label>
+      <select class="form-control" formControlName="importance" id="importance" style="margin-bottom: 25px;">
+        <option *ngFor="let importance of importance" [selected]="importance === 'Normal'">{{importance}}</option>
+      </select>
+      <textarea class="text-justify" cols="30" formControlName="mailContent" placeholder="Type mail content..."
+                rows="10"></textarea>
+    </div>
+    <div class="form-group">
+      <li *ngFor="let error of formErrors" class="list-group-item list-group-item-danger">{{error}}</li>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-info">Send</button>
+      <button class="btn btn-danger">Cancel</button>
+    </div>
+  </form>
+</div>
