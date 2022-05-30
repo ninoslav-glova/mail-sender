@@ -21,7 +21,7 @@ export class MailFormComponent implements OnInit {
       toEmail: [''],
       ccEmail: [''],
       subject: [''],
-      importance: [''],
+      importance: ['Normal'],
       mailContent: [''],
     })
   }
@@ -54,9 +54,20 @@ export class MailFormComponent implements OnInit {
         (error) => {
           this.formErrors = [];
           for (const [key, value] of Object.entries(error.error)) {
-            this.formErrors.push(`${key.toUpperCase()} : ${value}`);
+            this.formErrors.push(`Please note: ${value}`);
           }
         }
       );
+  }
+  resetForm()
+  {
+    const confirmed = window.confirm('Are you sure, you will lose all your data?');
+
+    if (confirmed) {
+      this.mailForm.reset();
+    } else {
+      // user did not confirm
+    }
+
   }
 }
