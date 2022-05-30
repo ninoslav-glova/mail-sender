@@ -16,9 +16,7 @@ Run the built docker image:
 
     docker run -d -p 8080:8080 mail-sender
 
-Navigate your browser to localhost:8080, and you should see something like this:
-
-![](doc/Screenshot 2022-05-30 211133.png?raw=true)
+Navigate your browser to localhost:8080, and you should see main frontend page.
 
 
 
