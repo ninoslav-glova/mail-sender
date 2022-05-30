@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jre-alpine AS build
 WORKDIR /tmp/expanded
-COPY build/libs/mail-sender-*.jar mailsender.jar
+COPY mail-backend/build/libs/mail-backend-*.jar mailsender.jar
 RUN java -Djarmode=layertools -jar mailsender.jar extract
 
 

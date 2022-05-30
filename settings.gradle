@@ -1,3 +1,3 @@
 rootProject.name = 'mail-sender'
 
-include ':mail-backend'
+include ':mail-backend', ':mail-form'

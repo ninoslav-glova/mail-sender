@@ -43,3 +43,16 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+
+jar {
+	enabled = false
+}
+
+bootJar {
+	dependsOn(":mail-form:build")
+	from("../mail-form/dist/mail-form/") {
+		into "public"
+	}
+}
+
