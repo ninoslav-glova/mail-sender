@@ -1,0 +1,52 @@
+plugins {
+  id "base"
+  id "com.github.node-gradle.node" version "3.1.1"
+}
+
+version '0.0.1'
+
+repositories {
+  gradlePluginPortal()
+  mavenCentral()
+}
+
+
+node {
+  version = '14.17.6'
+  npmVersion = '7.23.0'
+  download = true
+
+  workDir = file("${project.buildDir}/nodejs")
+
+  npmWorkDir = file("${project.buildDir}/npm")
+
+  yarnWorkDir = file("${project.buildDir}/yarn")
+
+  nodeModulesDir = file("${project.projectDir}/node_modules")
+}
+
+task cleanBuildFiles(type: Delete) {
+  delete fileTree("dist")
+}
+
+task installPackages(type: NpmTask) {
+  description = "Install dependencies"
+  args = ["install"]
+}
+
+task npmTest(type: NpmTask) {
+  description = "Run tests with Karma"
+  args = ["test", "--single-run"]
+  dependsOn installPackages
+}
+
+task createDistributionArtifacts(type: NpmTask) {
+
+  dependsOn installPackages
+  args = ["run", "build"]
+
+}
+
+clean.dependsOn(cleanBuildFiles)
+
+build.dependsOn(createDistributionArtifacts)
