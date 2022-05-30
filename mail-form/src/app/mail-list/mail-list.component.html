@@ -1,0 +1,27 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">From</th>
+        <th scope="col">Sent To</th>
+        <th scope="col">CC-ed To</th>
+        <th scope="col">Importance</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Mail Content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let mail of mailList">
+        <td>{{ mail.fromEmail}}</td>
+        <td>{{ mail.toEmail}}</td>
+        <td>{{ mail.ccEmail}}</td>
+        <td>{{ mail.importance}}</td>
+        <td>{{ mail.subject}}</td>
+        <td>{{ mail.mailContent}}</td>
+        <!--        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
