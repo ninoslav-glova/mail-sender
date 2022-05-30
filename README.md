@@ -18,7 +18,7 @@ Run the built docker image:
 
 Navigate your browser to localhost:8080, and you should see something like this:
 
-![](doc/Screenshot 2022-05-30 211133.png "App Preview")
+![](doc/Screenshot 2022-05-30 211133.png?raw=true)
 
 
 
