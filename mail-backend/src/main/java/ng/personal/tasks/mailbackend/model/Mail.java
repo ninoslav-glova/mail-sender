@@ -22,16 +22,16 @@ public class Mail {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotBlank(message = "Field must not be blank.")
-    @Email(message = "Please enter a valid email address.")
+    @NotBlank(message = "From field must not be blank.")
+    @Email(message = "Please enter a valid 'from' email address.")
     private String fromEmail;
 
-    @NotBlank(message = "Field must not be blank.")
-    @Email(message = "Please enter a valid email address.")
+    @NotBlank(message = "Send to email field must not be blank.")
+    @Email(message = "Please enter a valid 'to' email address.")
     private String toEmail;
 
     @Pattern(regexp = "^\\s*$|(([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4}))(((;|,|; | ;| ; | , | ,){1}"
-                      + "\\s*$|([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4}))*)", message = "Please use valid email addresses separated with a ';'")
+                      + "\\s*$|([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4}))*)", message = "Please use valid email addresses in the 'cc' field separated with a ';'")
     private String ccEmail;
 
     @NotBlank(message = "Subject is mandatory.")
